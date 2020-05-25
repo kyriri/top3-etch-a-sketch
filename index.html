@@ -22,11 +22,13 @@
                 align-content: flex-start;
             }
             main div {
-                background: rgb(232, 195, 232);
                 margin: 0;
                 padding: 0;
                 border: 0;
                 flex-grow: 0;
+            }
+            .drawn {
+                background: black;
             }
             footer {
                 padding: 5px 0;
@@ -42,17 +44,22 @@
         <footer>kyriri | quarentine 2020</footer>
     </body>
     <script>
-        const squaresPerLine = 5;
+        const squaresPerLine = 100;
         const containerWidth = 500; //pixels
-        const squaresWidth = Math.floor(containerWidth / squaresPerLine);
+        const squaresWidth = containerWidth / squaresPerLine;
         const container = document.getElementsByTagName('main')[0];
 
+        function mouseHover (e) {
+            const drawnPixel = e.target;
+            drawnPixel.classList.add('drawn');
+        }
+        let timeStart = Date.now();
         for (let i = 0; i < squaresPerLine ** 2; i += 1) {
             const pixelDiv = document.createElement('div');
             pixelDiv.setAttribute('style',`width:${squaresWidth}px; height:${squaresWidth}px`);
-            if (i % 2 == 0) { pixelDiv.setAttribute('style', `width:${squaresWidth}px; height:${squaresWidth}px; background: gray;`)}
+            pixelDiv.addEventListener('mouseover', mouseHover);
             container.appendChild(pixelDiv);
         }
-        
+        console.log(`creating the grid took ${Date.now() - timeStart} ms`);        
     </script>
 </html>
