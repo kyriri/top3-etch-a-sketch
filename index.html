@@ -11,7 +11,6 @@
             header {
                 font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
                 font-size: 20px;
-                text-align: center;
             }
             main {
                 width: 500px;
@@ -30,7 +29,7 @@
                 flex-grow: 0;
             }
             footer {
-                text-align: center;
+                padding: 5px 0;
             }
         </style>
     </head>
@@ -40,10 +39,10 @@
         </header>
         <div id='settings'></div>
         <main></main>
-        <footer>Kyriri | quarentine 2020</footer>
+        <footer>kyriri | quarentine 2020</footer>
     </body>
     <script>
-        const squaresPerLine = 6;
+        const squaresPerLine = 5;
         const containerWidth = 500; //pixels
         const squaresWidth = Math.floor(containerWidth / squaresPerLine);
         const container = document.getElementsByTagName('main')[0];
