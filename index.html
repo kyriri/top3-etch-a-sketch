@@ -39,7 +39,10 @@
         <header>
             Etch-a-Sketch
         </header>
-        <div id='settings'></div>
+        <div id='settings'>
+            <input>
+            <button id='button-clear'>blank canvas</button>
+        </div>
         <main></main>
         <footer>kyriri | quarentine 2020</footer>
     </body>
@@ -49,7 +52,7 @@
         const squaresWidth = containerWidth / squaresPerLine;
         const container = document.getElementsByTagName('main')[0];
 
-        function mouseHover (e) {
+        function draw (e) {
             const drawnPixel = e.target;
             drawnPixel.classList.add('drawn');
         }
@@ -57,9 +60,16 @@
         for (let i = 0; i < squaresPerLine ** 2; i += 1) {
             const pixelDiv = document.createElement('div');
             pixelDiv.setAttribute('style',`width:${squaresWidth}px; height:${squaresWidth}px`);
-            pixelDiv.addEventListener('mouseover', mouseHover);
+            pixelDiv.addEventListener('mouseover', draw);
             container.appendChild(pixelDiv);
         }
-        console.log(`creating the grid took ${Date.now() - timeStart} ms`);        
+        console.log(`creating the grid took ${Date.now() - timeStart} ms`);
+
+        function clearCanvas() {
+            const drawnPixels = document.querySelectorAll('.drawn');
+            drawnPixels.forEach( pixel => pixel.classList.remove('drawn'));
+        }
+        const buttonClear = document.getElementById('button-clear');
+        buttonClear.addEventListener('click', clearCanvas); 
     </script>
 </html>
