@@ -14,19 +14,20 @@
                 text-align: center;
             }
             main {
-                background: rgb(232, 195, 232);
                 width: 500px;
                 height: 500px;
                 border: 1px solid black;
                 padding: 0;
                 display: flex;
                 flex-wrap: wrap;
+                align-content: flex-start;
             }
-            .pixel {
-                background: white;
+            main div {
+                background: rgb(232, 195, 232);
                 margin: 0;
                 padding: 0;
                 border: 0;
+                flex-grow: 0;
             }
             footer {
                 text-align: center;
@@ -41,5 +42,18 @@
         <main></main>
         <footer>Kyriri | quarentine 2020</footer>
     </body>
-    <script></script>
+    <script>
+        const squaresPerLine = 6;
+        const containerWidth = 500; //pixels
+        const squaresWidth = Math.floor(containerWidth / squaresPerLine);
+        const container = document.getElementsByTagName('main')[0];
+
+        for (let i = 0; i < squaresPerLine ** 2; i += 1) {
+            const pixelDiv = document.createElement('div');
+            pixelDiv.setAttribute('style',`width:${squaresWidth}px; height:${squaresWidth}px`);
+            if (i % 2 == 0) { pixelDiv.setAttribute('style', `width:${squaresWidth}px; height:${squaresWidth}px; background: gray;`)}
+            container.appendChild(pixelDiv);
+        }
+        
+    </script>
 </html>
