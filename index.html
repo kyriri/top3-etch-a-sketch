@@ -27,9 +27,6 @@
                 border: 0;
                 flex-grow: 0;
             }
-            .drawn {
-                background: black;
-            }
             footer {
                 padding: 5px 0;
             }
@@ -52,11 +49,8 @@
         const container = document.getElementsByTagName('main')[0];
         const inputField = document.getElementById('density');
         const buttonClear = document.getElementById('button-clear');
+        let currentColor = 'rgba(0, 0, 0, 1)';
 
-        function draw (e) {
-            const drawnPixel = e.target;
-            drawnPixel.classList.add('drawn');
-        }
         function createCanvas() {
             const timeStart = Date.now();
             const squaresPerLine = inputField.value;
@@ -64,11 +58,24 @@
             container.innerHTML = '';
             for (let i = 0; i < squaresPerLine ** 2; i += 1) {
                 const pixelDiv = document.createElement('div');
-                pixelDiv.setAttribute('style',`width:${squaresWidth}px; height:${squaresWidth}px`);
+                pixelDiv.style.width = `${squaresWidth}px`;
+                pixelDiv.style.height = `${squaresWidth}px`;
                 pixelDiv.addEventListener('mouseover', draw);
                 container.appendChild(pixelDiv);
             }
             console.log(`creating ${squaresPerLine}x${squaresPerLine} grid took ${Date.now() - timeStart} ms`);
+            randomColor();
+        }
+        function draw (e) {
+            const drawnPixel = e.target;
+            drawnPixel.style.background = `${currentColor}`;
+        }
+        function randomColor() {
+            const codeR = Math.floor(255 * Math.random());
+            const codeG = Math.floor(255 * Math.random());
+            const codeB = Math.floor(255 * Math.random());
+            currentColor = `rgba(${codeR}, ${codeG}, ${codeB}, 1)`;
+            console.log(`current color: rgba(${codeR}, ${codeG}, ${codeB}, 1)`);
         }
         createCanvas();
         inputField.addEventListener('keydown', e => { if (e.which == 13 || e.which == 32) {createCanvas()}});
