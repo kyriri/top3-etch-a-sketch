@@ -40,36 +40,38 @@
             Etch-a-Sketch
         </header>
         <div id='settings'>
-            <input>
+            <label for='density'>Choose pixel density (3 to 200):</label>
+            <input name='density' id='density' type='number' value='100' min='3' max='200'>
             <button id='button-clear'>blank canvas</button>
         </div>
         <main></main>
         <footer>kyriri | quarentine 2020</footer>
     </body>
     <script>
-        const squaresPerLine = 100;
         const containerWidth = 500; //pixels
-        const squaresWidth = containerWidth / squaresPerLine;
         const container = document.getElementsByTagName('main')[0];
+        const inputField = document.getElementById('density');
+        const buttonClear = document.getElementById('button-clear');
 
         function draw (e) {
             const drawnPixel = e.target;
             drawnPixel.classList.add('drawn');
         }
-        let timeStart = Date.now();
-        for (let i = 0; i < squaresPerLine ** 2; i += 1) {
-            const pixelDiv = document.createElement('div');
-            pixelDiv.setAttribute('style',`width:${squaresWidth}px; height:${squaresWidth}px`);
-            pixelDiv.addEventListener('mouseover', draw);
-            container.appendChild(pixelDiv);
+        function createCanvas() {
+            const timeStart = Date.now();
+            const squaresPerLine = inputField.value;
+            const squaresWidth = containerWidth / squaresPerLine;
+            container.innerHTML = '';
+            for (let i = 0; i < squaresPerLine ** 2; i += 1) {
+                const pixelDiv = document.createElement('div');
+                pixelDiv.setAttribute('style',`width:${squaresWidth}px; height:${squaresWidth}px`);
+                pixelDiv.addEventListener('mouseover', draw);
+                container.appendChild(pixelDiv);
+            }
+            console.log(`creating ${squaresPerLine}x${squaresPerLine} grid took ${Date.now() - timeStart} ms`);
         }
-        console.log(`creating the grid took ${Date.now() - timeStart} ms`);
-
-        function clearCanvas() {
-            const drawnPixels = document.querySelectorAll('.drawn');
-            drawnPixels.forEach( pixel => pixel.classList.remove('drawn'));
-        }
-        const buttonClear = document.getElementById('button-clear');
-        buttonClear.addEventListener('click', clearCanvas); 
+        createCanvas();
+        inputField.addEventListener('keydown', e => { if (e.which == 13 || e.which == 32) {createCanvas()}});
+        buttonClear.addEventListener('click', createCanvas); 
     </script>
 </html>
