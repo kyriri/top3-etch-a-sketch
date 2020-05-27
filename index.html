@@ -7,15 +7,35 @@
             body {
                 font-family: Avenir, 'Lucida Sans', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
                 font-size: 10px;
+                padding: 10px;
+                margin: 0;
+            }
+            #flyer {
+                width: 550px;
+                background: #E5E5E7;
+                border-radius: 10px;
+                margin: 0 auto;
+                padding: 10px;
             }
             header {
                 font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-                font-size: 20px;
+                font-size: 30px;
+                text-align: center;
+            }
+            #settings {
+                text-align: center;
+                padding: 10px 0 5px 0;
+            }
+            button {
+                padding-bottom: 4px;
+                margin: 5px;
             }
             main {
                 width: 500px;
                 height: 500px;
+                background: white;
                 border: 1px solid black;
+                margin: 0 auto;
                 padding: 0;
                 display: flex;
                 flex-wrap: wrap;
@@ -28,21 +48,25 @@
                 flex-grow: 0;
             }
             footer {
-                padding: 5px 0;
+                text-align: center;
+                padding: 10px 0 0 0;
             }
         </style>
     </head>
     <body>
-        <header>
-            Single-Line Drawing Challenge
-        </header>
-        <div id='settings'>
-            <label for='density'>Choose pixel density (3 to 200):</label>
-            <input name='density' id='density' type='number' value='100' min='3' max='200'>
-            <button id='button-clear'>blank canvas</button>
+        <div id='flyer'>
+            <header>
+                Single-Line Drawing Challenge
+            </header>
+            <div id='settings'>
+                <label for='density'>Choose pixel density (3 to 200):</label>
+                <input name='density' id='density' type='number' value='100' min='3' max='200'>
+                <BR>
+                <button id='button-clear'>new blank canvas</button>
+            </div>
+            <main></main>
+            <footer>kyriri &nbsp; | &nbsp; quarentine 2020</footer>
         </div>
-        <main></main>
-        <footer>kyriri | quarentine 2020</footer>
     </body>
     <script>
         const containerWidth = 500; //pixels
