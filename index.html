@@ -135,7 +135,11 @@
         function draw (e) {
             const drawnPixel = e.target;
             if (!drawnPixel.style.background) {
-                drawnPixel.style.background = `rgba(${codeR}, ${codeG}, ${codeB}, 0.2)`;
+                if (radioBW.checked) {
+                    drawnPixel.style.background = `rgba(${codeR}, ${codeG}, ${codeB}, 0.1)`;
+                } else {
+                    drawnPixel.style.background = `rgba(${codeR}, ${codeG}, ${codeB}, 0.2)`;
+                }
             } else {
                 let alpha = 0.1 + +drawnPixel.style.background.slice(-4,-1);
                 alpha = Math.round(alpha * 10) / 10;
