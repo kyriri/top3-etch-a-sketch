@@ -60,7 +60,7 @@
             </header>
             <div id='settings'>
                 <label for='density'>Choose pixel density (3 to 200):</label>
-                <input name='density' id='density' type='number' value='80' min='3' max='200'>
+                <input name='density' id='density' type='number' value='40' min='3' max='200'>
                 <BR>
                 <input type='radio' id='random' value='random' name='color'>
                 <label for='random'>random</label>
@@ -83,7 +83,7 @@
         const radioBW = document.getElementById('bw');
         const radioLast = document.getElementById('last');
         const densityField = document.getElementById('density');
-        const buttonClear = document.getElementById('button-clear');
+        const buttonNew = document.getElementById('button-clear');
         let codeR = 0;
         let codeG = 0;
         let codeB = 0;
@@ -101,14 +101,7 @@
                 container.appendChild(pixelDiv);
             }
             console.log(`creating ${squaresPerLine}x${squaresPerLine} grid took ${Date.now() - timeStart} ms`);
-            if (radioBW.checked) {
-                codeR = 0;
-                codeG = 0;
-                codeB = 0;
-            } else if (radioLast.checked) {
-            } else {
-                randomColor();
-            }
+            chooseColor();
         }
         function draw (e) {
             const drawnPixel = e.target;
@@ -121,14 +114,21 @@
                 drawnPixel.style.background = `rgba(${codeR}, ${codeG}, ${codeB}, ${alpha})`;
             }
         }
-        function randomColor() {
-            codeR = Math.floor(255 * Math.random());
-            codeG = Math.floor(255 * Math.random());
-            codeB = Math.floor(255 * Math.random());
-            console.log(`start color: rgb(${codeR}, ${codeG}, ${codeB})`);
+        function chooseColor() {
+            if (radioBW.checked) {
+                codeR = 0;
+                codeG = 0;
+                codeB = 0;
+            } else if (radioLast.checked) {
+            } else {
+                codeR = Math.floor(255 * Math.random());
+                codeG = Math.floor(255 * Math.random());
+                codeB = Math.floor(255 * Math.random());
+            }
+            console.log(`current color: rgb(${codeR}, ${codeG}, ${codeB})`);
         }
         createCanvas();
         densityField.addEventListener('keydown', e => { if (e.which == 13 || e.which == 32) {createCanvas()}});
-        buttonClear.addEventListener('click', createCanvas); 
+        buttonNew.addEventListener('click', createCanvas); 
     </script>
 </html>
