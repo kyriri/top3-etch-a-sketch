@@ -79,7 +79,7 @@
             </header>
             <div id='settings'>
                 <div id='settings-left'>
-                    <input type='radio' id='random' value='random' name='color'>
+                    <input type='radio' checked='checked' id='random' value='random' name='color'>
                     <label for='random'>random</label>
                     <BR>
                     <input type='radio' id='bw' value='bw' name='color'>
@@ -152,13 +152,14 @@
                 codeR = 0;
                 codeG = 0;
                 codeB = 0;
+                console.log(`current color: rgba(${codeR}, ${codeG}, ${codeB}, 0.1)`);
             } else if (radioLast.checked) {
             } else {
                 codeR = Math.floor(255 * Math.random());
                 codeG = Math.floor(255 * Math.random());
                 codeB = Math.floor(255 * Math.random());
+                console.log(`current color: rgba(${codeR}, ${codeG}, ${codeB}, 0.2)`);
             }
-            console.log(`current color: rgb(${codeR}, ${codeG}, ${codeB})`);
         }
         createCanvas();
 
