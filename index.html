@@ -38,8 +38,11 @@
                 padding-right: 8px;
                 display: inline-block;
             }
+            #density {
+                width: 40px;
+            }
             button {
-                padding-bottom: 4px;
+                padding-bottom: 2px;
                 margin: 5px 0 5px 15px;
             }
             main {
@@ -134,17 +137,17 @@
         }
         function draw (e) {
             const drawnPixel = e.target;
-            if (!drawnPixel.style.background) {
+            if (!drawnPixel.style.backgroundColor) {
                 if (radioBW.checked) {
-                    drawnPixel.style.background = `rgba(${codeR}, ${codeG}, ${codeB}, 0.1)`;
+                    drawnPixel.style.backgroundColor = `rgba(${codeR}, ${codeG}, ${codeB}, 0.1)`;
                 } else {
-                    drawnPixel.style.background = `rgba(${codeR}, ${codeG}, ${codeB}, 0.2)`;
+                    drawnPixel.style.backgroundColor = `rgba(${codeR}, ${codeG}, ${codeB}, 0.2)`;
                 }
             } else {
-                let alpha = 0.1 + +drawnPixel.style.background.slice(-4,-1);
+                let alpha = 0.1 + +drawnPixel.style.backgroundColor.slice(-4,-1);
                 alpha = Math.round(alpha * 10) / 10;
                 if (alpha > 1) { alpha = 1; }
-                drawnPixel.style.background = `rgba(${codeR}, ${codeG}, ${codeB}, ${alpha})`;
+                drawnPixel.style.backgroundColor = `rgba(${codeR}, ${codeG}, ${codeB}, ${alpha})`;
             }
         }
         function chooseColor() {
