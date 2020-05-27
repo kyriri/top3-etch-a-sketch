@@ -60,7 +60,16 @@
             </header>
             <div id='settings'>
                 <label for='density'>Choose pixel density (3 to 200):</label>
-                <input name='density' id='density' type='number' value='100' min='3' max='200'>
+                <input name='density' id='density' type='number' value='80' min='3' max='200'>
+                <BR>
+                <input type='radio' id='random' value='random' name='color'>
+                <label for='random'>random</label>
+                <BR>
+                <input type='radio' id='bw' value='bw' name='color'>
+                <label for='bw'>shades of grey</label>
+                <BR>
+                <input type='radio' id='last' value='last' name='color'>
+                <label for='last'>keep last color</label>
                 <BR>
                 <button id='button-clear'>new blank canvas</button>
             </div>
@@ -71,7 +80,9 @@
     <script>
         const containerWidth = 500; //pixels
         const container = document.getElementsByTagName('main')[0];
-        const inputField = document.getElementById('density');
+        const radioBW = document.getElementById('bw');
+        const radioLast = document.getElementById('last');
+        const densityField = document.getElementById('density');
         const buttonClear = document.getElementById('button-clear');
         let codeR = 0;
         let codeG = 0;
@@ -79,7 +90,7 @@
 
         function createCanvas() {
             const timeStart = Date.now();
-            const squaresPerLine = inputField.value;
+            const squaresPerLine = densityField.value;
             const squaresWidth = containerWidth / squaresPerLine;
             container.innerHTML = '';
             for (let i = 0; i < squaresPerLine ** 2; i += 1) {
@@ -90,7 +101,14 @@
                 container.appendChild(pixelDiv);
             }
             console.log(`creating ${squaresPerLine}x${squaresPerLine} grid took ${Date.now() - timeStart} ms`);
-            randomColor();
+            if (radioBW.checked) {
+                codeR = 0;
+                codeG = 0;
+                codeB = 0;
+            } else if (radioLast.checked) {
+            } else {
+                randomColor();
+            }
         }
         function draw (e) {
             const drawnPixel = e.target;
@@ -107,10 +125,10 @@
             codeR = Math.floor(255 * Math.random());
             codeG = Math.floor(255 * Math.random());
             codeB = Math.floor(255 * Math.random());
-            console.log(`current color: rgba(${codeR}, ${codeG}, ${codeB}, 0.1)`);
+            console.log(`start color: rgb(${codeR}, ${codeG}, ${codeB})`);
         }
         createCanvas();
-        inputField.addEventListener('keydown', e => { if (e.which == 13 || e.which == 32) {createCanvas()}});
+        densityField.addEventListener('keydown', e => { if (e.which == 13 || e.which == 32) {createCanvas()}});
         buttonClear.addEventListener('click', createCanvas); 
     </script>
 </html>
