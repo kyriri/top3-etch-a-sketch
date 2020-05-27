@@ -96,6 +96,7 @@
     <script>
         const containerWidth = 500; //pixels
         const container = document.getElementsByTagName('main')[0];
+        const radiosAll = document.getElementsByName('color');
         const radioBW = document.getElementById('bw');
         const radioLast = document.getElementById('last');
         const densityField = document.getElementById('density');
@@ -144,6 +145,8 @@
             console.log(`current color: rgb(${codeR}, ${codeG}, ${codeB})`);
         }
         createCanvas();
+
+        radiosAll.forEach(radio => radio.addEventListener('change', createCanvas));
         densityField.addEventListener('keydown', e => { if (e.which == 13 || e.which == 32) {createCanvas()}});
         buttonNew.addEventListener('click', createCanvas); 
     </script>
