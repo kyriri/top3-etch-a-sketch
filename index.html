@@ -26,9 +26,20 @@
                 text-align: center;
                 padding: 10px 0 5px 0;
             }
+            #settings-right {
+                text-align: right;
+                vertical-align: top;
+                padding-left: 8px;
+                display: inline-block;
+            }
+            #settings-left {
+                text-align: left;
+                padding-right: 8px;
+                display: inline-block;
+            }
             button {
                 padding-bottom: 4px;
-                margin: 5px;
+                margin: 5px 0 5px 15px;
             }
             main {
                 width: 500px;
@@ -59,19 +70,24 @@
                 Single-Line Drawing Challenge
             </header>
             <div id='settings'>
-                <label for='density'>Choose pixel density (3 to 200):</label>
-                <input name='density' id='density' type='number' value='40' min='3' max='200'>
-                <BR>
-                <input type='radio' id='random' value='random' name='color'>
-                <label for='random'>random</label>
-                <BR>
-                <input type='radio' id='bw' value='bw' name='color'>
-                <label for='bw'>shades of grey</label>
-                <BR>
-                <input type='radio' id='last' value='last' name='color'>
-                <label for='last'>keep last color</label>
-                <BR>
-                <button id='button-clear'>new blank canvas</button>
+                <div id='settings-left'>
+                    <input type='radio' id='random' value='random' name='color'>
+                    <label for='random'>random</label>
+                    <BR>
+                    <input type='radio' id='bw' value='bw' name='color'>
+                    <label for='bw'>shades of grey</label>
+                    <BR>
+                    <input type='radio' id='last' value='last' name='color'>
+                    <label for='last'>keep last color</label>    
+                </div>
+                <div id='settings-right'>
+                    <label for='density'>pixel density <BR>(3 to 200):</label>
+                    <BR>
+                    <input name='density' id='density' type='number' value='40' min='3' max='200'>
+                </div>
+                <div>
+                    <button id='button-clear'>new blank canvas</button>
+                </div>
             </div>
             <main></main>
             <footer>kyriri &nbsp; | &nbsp; quarentine 2020</footer>
