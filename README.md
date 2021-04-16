@@ -1,5 +1,5 @@
 # T.O.P : Etch-a-Sketch
-The Odin Project's 3rd assignment: build an etch-a-sketch canvas for browsers.
+The Odin Project's Foundation Path - [3rd assignment](https://www.theodinproject.com/paths/foundations/courses/foundations/lessons/etch-a-sketch-project): build an etch-a-sketch (drawing canvas) for browsers.
 
 Features required by the assignment:
 - 1: ability to draw in a canvas with mouse movement
@@ -19,3 +19,5 @@ Extra features of my own volition:
 Time to create the canvas (which varies with resolution) and the current drawing color can be accessed on the console.
 
 (since for the scope of this assignment, there is no way to "lift the pencil from the paper", I decided it was more appropriate to call my page a *Single-Line Drawing challenge*)
+
+Here is the [live preview](https://kyriri.github.io/top3-etch-a-sketch/).
